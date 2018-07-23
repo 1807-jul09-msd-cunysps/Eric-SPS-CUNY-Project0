@@ -27,52 +27,13 @@ namespace ContactLibrary
         public string lastName { get; set; }
         public Address address { get; set; }
         public Phone phone { get; set; }
-
-       
-        public List<Person> Get()
+        override public string ToString()
         {
-
-            Person p1 = new Person();
-            p1.firstName = "Tammy";
-            p1.lastName = "Johnson";
-            p1.Pid = DateTime.Now.Ticks;
-            p1.address.houseNum = "121";
-            p1.address.Pid = p1.Pid;
-            p1.address.street = "1st";
-            p1.address.city = "New York";
-            p1.address.State = State.NY;
-            p1.address.Country = Country.US;
-            p1.address.zipcode = "10017";
-            p1.phone.Pid = p1.Pid;
-            p1.phone.areaCode = "204";
-            p1.phone.countrycode = Country.US;
-            p1.phone.ext = "";
-            p1.phone.number = "564456";
-
-
-            Person p2 = new Person();
-            p2.firstName = "Sammy";
-            p2.lastName = "Demier";
-            p2.Pid = DateTime.Now.Ticks;
-            p2.address.houseNum = "123";
-            p2.address.Pid = p2.Pid;
-            p2.address.street = "21st";
-            p2.address.city = "New York";
-            p2.address.State = State.NY;
-            p2.address.Country = Country.US;
-            p2.address.zipcode = "10018";
-            p2.phone.Pid = p2.Pid;
-            p2.phone.areaCode = "289";
-            p2.phone.countrycode = Country.US;
-            p2.phone.ext = "";
-            p2.phone.number = "456622";
-
-            List<Person> p = new List<Person>();
-            p.Add(p1);
-            p.Add(p2);
-            return p;
+            return $"ID: {Pid} \n" +
+                $"Name: {lastName}, {firstName} \n" +
+                $"Address: {address} \n" +
+                $"Phone Number: {phone} \n";
         }
-     
     }
 
     public class Address
@@ -84,6 +45,10 @@ namespace ContactLibrary
         public State State { get; set; }
         public Country Country { get; set; }
         public string zipcode { get; set; }
+        public override string ToString()
+        {
+            return $"{houseNum} {street}, {city}, {State}, {zipcode}, {Country}";
+        }
     }
 
     public class Phone
@@ -93,6 +58,10 @@ namespace ContactLibrary
         public string areaCode { get; set; }
         public string number { get; set; }
         public string ext { get; set; }
+        public override string ToString()
+        {
+            return $"{countrycode} ({areaCode}), {number}, - {ext}";
+        }
     }
     
 }
