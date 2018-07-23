@@ -1,0 +1,3 @@
+DROP TABLE IF EXISTS Orders;
+DROP TABLE IF EXISTS Customers;
+DROP Table IF EXISTS Products;
