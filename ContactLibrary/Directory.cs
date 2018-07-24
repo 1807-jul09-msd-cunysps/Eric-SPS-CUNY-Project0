@@ -17,11 +17,19 @@ namespace ContactLibrary
         {
             directory.Add(person);
         }
+        public void Delete(long pid)
+        {
+            foreach (Person element in Search(pid:pid))
+            {
+                directory.Remove(element);
+            }
+        }
         public void Update(long pid)
         {
-            directory.Find(x => x.Pid == pid);
+            Person updatePerson = directory.Find(x => x.Pid == pid);
+
         }
-        public List<Person> Search(string firstName = "", string lastName = "", string zipCode = "", string city = "", string phoneNumber = "")
+        public List<Person> Search(long pid = 0, string firstName = "", string lastName = "", string zipCode = "", string city = "", string phoneNumber = "")
         {
             if(firstName != "")
             {
@@ -42,6 +50,10 @@ namespace ContactLibrary
             else if(phoneNumber != "")
             {
                 return directory.FindAll(x => x.phone.ToString() == phoneNumber);
+            }
+            else if(pid == 0)
+            {
+                return directory.FindAll(x => x.Pid == pid);
             }
             else
             {
