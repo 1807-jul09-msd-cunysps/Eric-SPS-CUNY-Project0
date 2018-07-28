@@ -19,7 +19,26 @@ namespace ContactLibrary
         }
         public void Delete(long pid)
         {
-            foreach (Person element in Search(pid:pid))
+            List<Person> deleteList = new List<Person>();
+            string searchCriteria;
+            searchCriteria = Console.ReadLine();
+            switch (searchCriteria.ToLower())
+            {
+                case "first name":
+                    {
+                        break;
+                    }
+                case "last name":
+                    {
+                        break;
+                    }
+                default:
+                    {
+                        Console.WriteLine("Invalid Search Criteria");
+                        break;
+                    }
+            }
+            foreach (Person element in deleteList)
             {
                 directory.Remove(element);
             }
