@@ -17,24 +17,40 @@ namespace ContactLibrary
         {
             directory.Add(person);
         }
-        public void Delete(long pid)
+        public void Delete()
         {
             List<Person> deleteList = new List<Person>();
             string searchCriteria;
+            Console.WriteLine("Please enter the method of search: \n" +
+                "1. ID \n" +
+                "2. First name \n" +
+                "3. Last name \n");
             searchCriteria = Console.ReadLine();
             switch (searchCriteria.ToLower())
             {
-                case "first name":
+                case "id":
+                case "1":
                     {
+                        Console.WriteLine("Please enter the ID of the contact(s) you wish to delete");
+                        break;
+                    }
+                case "first name":
+                case "2":
+                    {
+                        Console.WriteLine("Please enter the first name of the contact(s) you wish to delete");
+                        deleteList = Search(firstName: Console.ReadLine());
                         break;
                     }
                 case "last name":
+                case "3":
                     {
+                        Console.WriteLine("Please enter the last name of the contact(s) you wish to delete");
+                        deleteList = Search(lastName: Console.ReadLine());
                         break;
                     }
                 default:
                     {
-                        Console.WriteLine("Invalid Search Criteria");
+                        Console.WriteLine("Invalid Search Method.");
                         break;
                     }
             }
@@ -46,6 +62,59 @@ namespace ContactLibrary
         public void Update(long pid)
         {
             Person updatePerson = directory.Find(x => x.Pid == pid);
+            string changes;
+            Console.WriteLine(updatePerson + "\n \n" +
+                "What would you like to change? Please type in the field. ID cannot be changed.");
+            changes = Console.ReadLine();
+            switch (changes.ToLower())
+            {
+                case "phone number":
+                    {
+                        Console.WriteLine("Please enter the following bits of information.");
+                        Console.WriteLine("country code:");
+                        int countryCode = Console.Read();
+                        updatePerson.phone.countrycode = (Country)countryCode;
+                        Console.WriteLine("area code:");
+                        updatePerson.phone.areaCode = Console.ReadLine();
+                        Console.WriteLine("number:");
+                        updatePerson.phone.number = Console.ReadLine();
+                        Console.WriteLine("extension:");
+                        updatePerson.phone.ext = Console.ReadLine();
+                        break;
+                    }
+                case "address":
+                    {
+                        Console.WriteLine("Please enter the following bits of information.");
+                        Console.WriteLine("house number:");
+                        updatePerson.address.houseNum = Console.ReadLine();
+                        Console.WriteLine("street:");
+                        updatePerson.address.street = Console.ReadLine();
+                        Console.WriteLine("city:");
+                        updatePerson.address.city = Console.ReadLine();
+                        Console.WriteLine("state:");
+                        string state = Console.ReadLine();
+                        updatePerson.address.State = (State)Enum.Parse(typeof(State),state);
+                        Console.WriteLine("country:");
+                        updatePerson.address.Country = (Country)Enum.Parse(typeof(Country), state);
+                        Console.WriteLine("zipcode:");
+                        updatePerson.address.zipcode = Console.ReadLine();
+                        break;
+                    }
+                case "name":
+                    {
+                        Console.WriteLine("Please enter the following bits of information.");
+                        Console.WriteLine("family name:");
+                        updatePerson.lastName = Console.ReadLine();
+                        Console.WriteLine("given name:");
+                        updatePerson.firstName = Console.ReadLine();
+                        break;
+                    }
+                default:
+                    {
+                        Console.WriteLine("Non-existent or non-modifiable field.");
+                        break;
+                    }
+            }
 
         }
         public List<Person> Search(long pid = 0, string firstName = "", string lastName = "", string zipCode = "", string city = "", string phoneNumber = "")
@@ -76,7 +145,7 @@ namespace ContactLibrary
             }
             else
             {
-                Console.WriteLine("No search criteria had been given");
+                Console.WriteLine("Invalid or non-existent search criteria had been given");
                 return null;
             }
         }
