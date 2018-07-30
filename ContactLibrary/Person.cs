@@ -14,11 +14,13 @@ namespace ContactLibrary
     {
         US = 1, UK = 44, India = 91, Pakistan = 92, Australia = 61
     }
+    [SerializableAttribute]
     public class Person
     {
         public Person()
         {
             /// Initialise the dependant objects
+            
             address = new Address();
             phone = new Phone();
         }
@@ -35,7 +37,7 @@ namespace ContactLibrary
                 $"Phone Number: {phone} \n";
         }
     }
-
+    [SerializableAttribute]
     public class Address
     {
         public long Pid { get; set; }
@@ -50,7 +52,7 @@ namespace ContactLibrary
             return $"{houseNum} {street}, {city}, {State}, {zipcode}, {Country}";
         }
     }
-
+    [SerializableAttribute]
     public class Phone
     {
         public long Pid { get; set; }
@@ -60,7 +62,7 @@ namespace ContactLibrary
         public string ext { get; set; }
         public override string ToString()
         {
-            return $"{countrycode} ({areaCode}), {number}, - {ext}";
+            return $"{(int)countrycode}({areaCode}){number}-{ext}";
         }
     }
     

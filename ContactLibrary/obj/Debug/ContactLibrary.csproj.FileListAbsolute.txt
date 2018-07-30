@@ -4,3 +4,9 @@ C:\Rev-CUNY\PersonContactApp\ContactLibrary\bin\Debug\ContactLibrary.dll
 C:\Rev-CUNY\PersonContactApp\ContactLibrary\bin\Debug\ContactLibrary.pdb
 C:\Rev-CUNY\PersonContactApp\ContactLibrary\obj\Debug\ContactLibrary.dll
 C:\Rev-CUNY\PersonContactApp\ContactLibrary\obj\Debug\ContactLibrary.pdb
+C:\Users\eli54\Desktop\Revature-Training VS\Eric-SPS-CUNY-Project0\Eric-SPS-CUNY-Project0\ContactLibrary\bin\Debug\ContactLibrary.dll
+C:\Users\eli54\Desktop\Revature-Training VS\Eric-SPS-CUNY-Project0\Eric-SPS-CUNY-Project0\ContactLibrary\bin\Debug\ContactLibrary.pdb
+C:\Users\eli54\Desktop\Revature-Training VS\Eric-SPS-CUNY-Project0\Eric-SPS-CUNY-Project0\ContactLibrary\obj\Debug\ContactLibrary.csprojAssemblyReference.cache
+C:\Users\eli54\Desktop\Revature-Training VS\Eric-SPS-CUNY-Project0\Eric-SPS-CUNY-Project0\ContactLibrary\obj\Debug\ContactLibrary.csproj.CoreCompileInputs.cache
+C:\Users\eli54\Desktop\Revature-Training VS\Eric-SPS-CUNY-Project0\Eric-SPS-CUNY-Project0\ContactLibrary\obj\Debug\ContactLibrary.dll
+C:\Users\eli54\Desktop\Revature-Training VS\Eric-SPS-CUNY-Project0\Eric-SPS-CUNY-Project0\ContactLibrary\obj\Debug\ContactLibrary.pdb

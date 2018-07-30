@@ -6,12 +6,22 @@ using System.Threading.Tasks;
 
 namespace ContactLibrary
 {
-    class Directory
+    [SerializableAttribute]
+    public class Directory
     {
-        List<Person> directory;
+        public List<Person> directory;
         public Directory()
         {
             directory = new List<Person>();
+        }
+        public override string ToString()
+        {
+            string data = "";
+            foreach(Person element in directory)
+            {
+                data += element;
+            }
+            return data;
         }
         public void Add(Person person)
         {
@@ -95,7 +105,7 @@ namespace ContactLibrary
                         string state = Console.ReadLine();
                         updatePerson.address.State = (State)Enum.Parse(typeof(State),state);
                         Console.WriteLine("country:");
-                        updatePerson.address.Country = (Country)Enum.Parse(typeof(Country), state);
+                        updatePerson.address.Country = (Country)Enum.Parse(typeof(Country), Console.ReadLine());
                         Console.WriteLine("zipcode:");
                         updatePerson.address.zipcode = Console.ReadLine();
                         break;

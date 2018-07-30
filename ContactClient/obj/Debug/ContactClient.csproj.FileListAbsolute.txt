@@ -8,3 +8,15 @@ C:\Rev-CUNY\PersonContactApp\ContactClient\obj\Debug\ContactClient.csprojResolve
 C:\Rev-CUNY\PersonContactApp\ContactClient\obj\Debug\ContactClient.csproj.CopyComplete
 C:\Rev-CUNY\PersonContactApp\ContactClient\obj\Debug\ContactClient.exe
 C:\Rev-CUNY\PersonContactApp\ContactClient\obj\Debug\ContactClient.pdb
+C:\Users\eli54\Desktop\Revature-Training VS\Eric-SPS-CUNY-Project0\Eric-SPS-CUNY-Project0\ContactClient\bin\Debug\ContactClient.exe.config
+C:\Users\eli54\Desktop\Revature-Training VS\Eric-SPS-CUNY-Project0\Eric-SPS-CUNY-Project0\ContactClient\bin\Debug\ContactClient.exe
+C:\Users\eli54\Desktop\Revature-Training VS\Eric-SPS-CUNY-Project0\Eric-SPS-CUNY-Project0\ContactClient\bin\Debug\ContactClient.pdb
+C:\Users\eli54\Desktop\Revature-Training VS\Eric-SPS-CUNY-Project0\Eric-SPS-CUNY-Project0\ContactClient\bin\Debug\ContactLibrary.dll
+C:\Users\eli54\Desktop\Revature-Training VS\Eric-SPS-CUNY-Project0\Eric-SPS-CUNY-Project0\ContactClient\bin\Debug\Newtonsoft.Json.dll
+C:\Users\eli54\Desktop\Revature-Training VS\Eric-SPS-CUNY-Project0\Eric-SPS-CUNY-Project0\ContactClient\bin\Debug\ContactLibrary.pdb
+C:\Users\eli54\Desktop\Revature-Training VS\Eric-SPS-CUNY-Project0\Eric-SPS-CUNY-Project0\ContactClient\bin\Debug\Newtonsoft.Json.xml
+C:\Users\eli54\Desktop\Revature-Training VS\Eric-SPS-CUNY-Project0\Eric-SPS-CUNY-Project0\ContactClient\obj\Debug\ContactClient.csprojAssemblyReference.cache
+C:\Users\eli54\Desktop\Revature-Training VS\Eric-SPS-CUNY-Project0\Eric-SPS-CUNY-Project0\ContactClient\obj\Debug\ContactClient.csproj.CoreCompileInputs.cache
+C:\Users\eli54\Desktop\Revature-Training VS\Eric-SPS-CUNY-Project0\Eric-SPS-CUNY-Project0\ContactClient\obj\Debug\ContactClient.csproj.CopyComplete
+C:\Users\eli54\Desktop\Revature-Training VS\Eric-SPS-CUNY-Project0\Eric-SPS-CUNY-Project0\ContactClient\obj\Debug\ContactClient.exe
+C:\Users\eli54\Desktop\Revature-Training VS\Eric-SPS-CUNY-Project0\Eric-SPS-CUNY-Project0\ContactClient\obj\Debug\ContactClient.pdb

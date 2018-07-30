@@ -16,13 +16,13 @@ request.onload = function () {
 }
 
 function populateHeader(jsonHeroes) {
-    var myH1 = document.createElement('h1');
-    myH1.textContent = jsonHeroes['squadName'];
-    header.appendChild(myH1);
+    var squadName = document.createElement('h1');
+    squadName.innerText = jsonHeroes['squadName'];
+    header.appendChild(squadName);
 
-    var myPara = document.createElement('p');
-    myPara.textContent = 'Hometown: ' + jsonHeroes['homeTown'] + ' // Formed: ' + jsonHeroes['formed'];
-    header.appendChild(myPara);
+    var homeTown = document.createElement('p');
+    homeTown.innerText = 'Hometown: ' + jsonHeroes['homeTown'] + ' // Formed: ' + jsonHeroes['formed'];
+    header.appendChild(homeTown);
 }
 
 function showHeroes(jsonHeroes) {
