@@ -41,7 +41,8 @@ namespace ContactLibrary
                 case "id":
                 case "1":
                     {
-                        Console.WriteLine("Please enter the ID of the contact(s) you wish to delete");
+                        Console.WriteLine("Please enter the ID of the contact you wish to delete");
+                        deleteList = Search(pid: Console.Read());
                         break;
                     }
                 case "first name":
