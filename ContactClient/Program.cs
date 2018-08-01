@@ -16,7 +16,7 @@ namespace ContactClient
 
         static void Main(string[] args)
         {
-            PersonDirectory addressBook = new PersonDirectory();
+            ContactLibrary.Directory addressBook = new ContactLibrary.Directory();
             string jsonData = "";
             while (true) {
                 Console.WriteLine("What do you wish to do?\n" +
@@ -59,7 +59,7 @@ namespace ContactClient
                         }
                     case "4":
                         {
-                            PersonDirectory listFound = new PersonDirectory();
+                            ContactLibrary.Directory listFound = new ContactLibrary.Directory();
                             listFound.directory = Search(addressBook);
                             if (!listFound.directory.Any())
                             {
@@ -84,7 +84,7 @@ namespace ContactClient
                     case "7":
                         {
                             jsonData = JsonConvert.SerializeObject(addressBook);
-
+                            Save(jsonData);
                             Console.WriteLine("Written to file.");
                             break;
                         }
@@ -181,7 +181,7 @@ namespace ContactClient
             addition.phone.ext = (Console.ReadLine()).Trim();
             return addition;
         }
-        public static void pushToDB(PersonDirectory addressBook)
+        public static void pushToDB(ContactLibrary.Directory addressBook)
         {
             SqlConnection con = null;
             string insertAddress = "INSERT INTO PersonAddress (houseNum,street,city,state,Country,zipcode) " +
@@ -257,7 +257,7 @@ namespace ContactClient
                 con.Close();
             }
         }
-        public static List<Person> Search(PersonDirectory addressBook)
+        public static List<Person> Search(ContactLibrary.Directory addressBook)
         {
             Console.WriteLine("What would you like to search by? \n" +
                 "1. ID\n" +
@@ -305,7 +305,7 @@ namespace ContactClient
                     }
             }
         }
-        public void Save(string jsonData)
+        public static void Save(string jsonData)
         {
             File.WriteAllText("C:\\Users\\eli54\\Desktop\\JsonData", jsonData);
         }
