@@ -82,14 +82,20 @@ namespace ContactLibrary
                 case "phone number":
                     {
                         Console.WriteLine("Please enter the following bits of information.");
+                        /*
                         Console.WriteLine("country code:");
-                        int countryCode = Console.Read();
-                        if (!Enum.IsDefined(typeof(Country), countryCode))
+                        int countryCode;
+                        while (true)
                         {
-                            Console.WriteLine("Unknown Country Code.");
-                            return;
+                            countryCode = Console.Read();
+                            if (!Enum.IsDefined(typeof(Country), countryCode))
+                            {
+                                Console.WriteLine("Unknown Country Code.");
+                                break;
+                            }
                         }
                         updatePerson.phone.countrycode = (Country)countryCode;
+                        */
                         Console.WriteLine("area code:");
                         updatePerson.phone.areaCode = Console.ReadLine().Trim();
                         Console.WriteLine("number:");
@@ -108,24 +114,40 @@ namespace ContactLibrary
                         Console.WriteLine("city:");
                         updatePerson.address.city = Console.ReadLine().Trim();
                         Console.WriteLine("state:");
-                        string state = Console.ReadLine().Trim();
-                        if (!Enum.IsDefined(typeof(State), state))
+                        string state;
+                        while (true)
                         {
-                            Console.WriteLine("Unknown State.");
-                            return;
+                            state = Console.ReadLine().Trim().ToUpper();
+                            if (!Enum.IsDefined(typeof(State), state))
+                            {
+                                Console.WriteLine("Unknown State.");
+                            }
+                            else
+                            {
+                                updatePerson.address.State = (State)Enum.Parse(typeof(State), state);
+                                break;
+                            }
                         }
-                        updatePerson.address.State = (State)Enum.Parse(typeof(State), state);
                         Console.WriteLine("country:");
-                        string country = (Console.ReadLine()).ToUpper().Trim();
-                        if (!Enum.IsDefined(typeof(Country), country))
+                        string country;
+                        while (true)
                         {
-                            Console.WriteLine("Unknown Country.");
-                            return;
+                            country = (Console.ReadLine()).ToUpper().Trim();
+                            if (!Enum.IsDefined(typeof(Country), country))
+                            {
+                                Console.WriteLine("Unknown Country.");
+                            }
+                            else
+                            {
+                                updatePerson.address.Country = (Country)Enum.Parse(typeof(Country), country);
+                                break;
+                            }
                         }
-                        updatePerson.address.Country = (Country)Enum.Parse(typeof(Country), country);
+                        updatePerson.phone.countrycode = updatePerson.address.Country;
                         Console.WriteLine("zipcode:");
                         updatePerson.address.zipcode = Console.ReadLine().Trim();
                         break;
+
                     }
                 case "name":
                     {

@@ -16,6 +16,7 @@ namespace ContactClient
         static void Main(string[] args)
         {
             Directory addressBook = new Directory();
+            string jsonData = "";
             while (true) {
                 Console.WriteLine("What do you wish to do?\n" +
                     "1. Add a person\n" +
@@ -24,7 +25,8 @@ namespace ContactClient
                     "4. Search for people\n" +
                     "5. Push directory onto SQL database\n" +
                     "6. Read contacts from SQL database\n" +
-                    "7. Exit");
+                    "7. Create Json Object\n" +
+                    "8. Exit");
                 switch (Console.ReadLine())
                 {
                     case "1":
@@ -80,6 +82,12 @@ namespace ContactClient
                         }
                     case "7":
                         {
+                            jsonData = JsonConvert.SerializeObject(addressBook);
+                            Console.WriteLine(jsonData);
+                            break;
+                        }
+                    case "8":
+                        {
                             return;
                         }
                     default:
@@ -129,21 +137,35 @@ namespace ContactClient
             Console.WriteLine("city:");
             addition.address.city = (Console.ReadLine()).Trim();
             Console.WriteLine("state:");
-            string state = (Console.ReadLine()).ToUpper().Trim();
-            if (!Enum.IsDefined(typeof(State), state))
+            string state;
+            while (true)
             {
-                Console.WriteLine("Unknown State.");
-                return null;
+                state = Console.ReadLine().Trim().ToUpper();
+                if (!Enum.IsDefined(typeof(State), state))
+                {
+                    Console.WriteLine("Unknown State.");
+                }
+                else
+                {
+                    addition.address.State = (State)Enum.Parse(typeof(State), state);
+                    break;
+                }
             }
-            addition.address.State = (State)Enum.Parse(typeof(State), state);
             Console.WriteLine("country:");
-            string country = (Console.ReadLine()).ToUpper().Trim();
-            if (!Enum.IsDefined(typeof(Country), country))
+            string country;
+            while (true)
             {
-                Console.WriteLine("Unknown Country.");
-                return null;
+                country = (Console.ReadLine()).ToUpper().Trim();
+                if (!Enum.IsDefined(typeof(Country), country))
+                {
+                    Console.WriteLine("Unknown Country.");
+                }
+                else
+                {
+                    addition.address.Country = (Country)Enum.Parse(typeof(Country), country);
+                    break;
+                }
             }
-            addition.address.Country = (Country)Enum.Parse(typeof(Country),country);
             Console.WriteLine("zipcode:");
             addition.address.zipcode = (Console.ReadLine()).Trim();
             addition.phone.countrycode = addition.address.Country;
