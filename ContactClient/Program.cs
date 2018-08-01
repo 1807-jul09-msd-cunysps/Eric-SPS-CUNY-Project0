@@ -16,56 +16,79 @@ namespace ContactClient
         static void Main(string[] args)
         {
             Directory addressBook = new Directory();
-
-            Console.WriteLine("What do you wish to do?" +
-                "1. Add a person" +
-                "2. Delete a person(s)" +
-                "3. Update a person" +
-                "4. Search for people" +
-                "5. Push directory onto SQL database" +
-                "6. Read contacts from SQL database");
-            switch (Console.ReadLine())
-            {
-                case "1":
-                    {
-                        addressBook.Add(createPerson());
-                        break;
-                    }
-                case "2":
-                    {
-                        addressBook.Delete();
-                        break;
-                    }
-                case "3":
-                    {
-                        Console.WriteLine("What is the ID of the contact you wish to update? " +
-                            "If you do not know, use the search function to find it.");
-                        long pid = Console.Read();
-                        addressBook.Update(pid);
-                        break;
-                    }
-                case "4":
-                    {
-                        Search();
-                        break;
-                    }
-                case "5":
-                    {
-                        pushToDB(addressBook);
-                        break;
-                    }
-                case "6":
-                    {
-                        pullFromDB();
-                        break;
-                    }
-                default:
-                    {
-                        Console.WriteLine("Invalid Input.");
-                        break;
-                    }
+            while (true) {
+                Console.WriteLine("What do you wish to do?\n" +
+                    "1. Add a person\n" +
+                    "2. Delete a person(s)\n" +
+                    "3. Update a person\n" +
+                    "4. Search for people\n" +
+                    "5. Push directory onto SQL database\n" +
+                    "6. Read contacts from SQL database\n" +
+                    "7. Exit");
+                switch (Console.ReadLine())
+                {
+                    case "1":
+                        {
+                            Person addition = createPerson();
+                            if (addition == null)
+                            {
+                                Console.WriteLine("Person Entry failed.");
+                                break;
+                            }
+                            else
+                            {
+                                addressBook.Add(addition);
+                                break;
+                            }
+                        }
+                    case "2":
+                        {
+                            addressBook.Delete();
+                            break;
+                        }
+                    case "3":
+                        {
+                            Console.WriteLine("What is the ID of the contact you wish to update? " +
+                                "If you do not know, use the search function to find it.");
+                            long pid = Console.Read();
+                            addressBook.Update(pid);
+                            break;
+                        }
+                    case "4":
+                        {
+                            Directory listFound = new Directory();
+                            listFound.directory = Search(addressBook);
+                            if (!listFound.directory.Any())
+                            {
+                                Console.WriteLine("No Contacts found.");
+                            }
+                            else
+                            {
+                                Console.WriteLine(listFound);
+                            }
+                            break;
+                        }
+                    case "5":
+                        {
+                            pushToDB(addressBook);
+                            break;
+                        }
+                    case "6":
+                        {
+                            pullFromDB();
+                            break;
+                        }
+                    case "7":
+                        {
+                            return;
+                        }
+                    default:
+                        {
+                            Console.WriteLine("Invalid Input.");
+                            break;
+                        }
+                }
             }
-
         }
         public static void QueryInsertion(Person somePerson, SqlCommand address, SqlCommand phone, SqlCommand person)
         {
@@ -93,32 +116,45 @@ namespace ContactClient
         {
             Person addition = new Person();
             Console.WriteLine("Please enter the following bits of information.");
+            Console.WriteLine("Name");
             Console.WriteLine("family name:");
-            addition.lastName = Console.ReadLine();
+            addition.lastName = (Console.ReadLine()).Trim();
             Console.WriteLine("given name:");
-            addition.firstName = Console.ReadLine();
+            addition.firstName = (Console.ReadLine()).Trim();
+            Console.WriteLine("Address");
             Console.WriteLine("house number:");
-            addition.address.houseNum = Console.ReadLine();
+            addition.address.houseNum = (Console.ReadLine()).Trim();
             Console.WriteLine("street:");
-            addition.address.street = Console.ReadLine();
+            addition.address.street = (Console.ReadLine()).Trim();
             Console.WriteLine("city:");
-            addition.address.city = Console.ReadLine();
+            addition.address.city = (Console.ReadLine()).Trim();
             Console.WriteLine("state:");
-            string state = Console.ReadLine();
+            string state = (Console.ReadLine()).ToUpper().Trim();
+            if (!Enum.IsDefined(typeof(State), state))
+            {
+                Console.WriteLine("Unknown State.");
+                return null;
+            }
             addition.address.State = (State)Enum.Parse(typeof(State), state);
             Console.WriteLine("country:");
-            addition.address.Country = (Country)Enum.Parse(typeof(Country),Console.ReadLine());
+            string country = (Console.ReadLine()).ToUpper().Trim();
+            if (!Enum.IsDefined(typeof(Country), country))
+            {
+                Console.WriteLine("Unknown Country.");
+                return null;
+            }
+            addition.address.Country = (Country)Enum.Parse(typeof(Country),country);
             Console.WriteLine("zipcode:");
-            addition.address.zipcode = Console.ReadLine();
-            Console.WriteLine("country code:");
-            int countryCode = Int32.Parse(Console.ReadLine());
-            addition.phone.countrycode = (Country)countryCode;
+            addition.address.zipcode = (Console.ReadLine()).Trim();
+            addition.phone.countrycode = addition.address.Country;
+                
+            Console.WriteLine("Phone");
             Console.WriteLine("area code:");
             addition.phone.areaCode = Console.ReadLine();
             Console.WriteLine("number:");
-            addition.phone.number = Console.ReadLine();
+            addition.phone.number = (Console.ReadLine()).Trim();
             Console.WriteLine("extension:");
-            addition.phone.ext = Console.ReadLine();
+            addition.phone.ext = (Console.ReadLine()).Trim();
             return addition;
         }
         public static void pushToDB(Directory addressBook)
@@ -197,22 +233,51 @@ namespace ContactClient
                 con.Close();
             }
         }
-        public static void Search()
+        public static List<Person> Search(Directory addressBook)
         {
             Console.WriteLine("What would you like to search by? \n" +
-                "1. ID" +
-                "2. First name" +
-                "3. Last name" +
-                "4. Zip code" +
-                "5. City" +
-                "6. Phone Number");
+                "1. ID\n" +
+                "2. First name\n" +
+                "3. Last name\n" +
+                "4. Zip code\n" +
+                "5. City\n" +
+                "6. Phone Number\n");
             switch (Console.ReadLine().ToLower())
             {
+                case "1":
+                    {
+                        Console.WriteLine("Please enter the ID:");
+                        return addressBook.Search(pid: Convert.ToInt64(Console.ReadLine()));
+                    }
+                case "2":
+                    {
+                        Console.WriteLine("Please enter the given name:");
+                        return addressBook.Search(firstName: Console.ReadLine().Trim());
+                    }
+                case "3":
+                    {
+                        Console.WriteLine("Please enter the family name:");
+                        return addressBook.Search(lastName: Console.ReadLine().Trim());
+                    }
+                case "4":
+                    {
+                        Console.WriteLine("Please enter the Zip code:");
+                        return addressBook.Search(zipCode: Console.ReadLine().Trim());
+                    }
+                case "5":
+                    {
+                        Console.WriteLine("Please enter the city:");
+                        return addressBook.Search(phoneNumber: Console.ReadLine().Trim());
+                    }
                 case "6":
                     {
                         Console.WriteLine("Please enter the phone number in a [countrycode]([ areaCode])[ number]-[ ext] format:");
-                        
-                        break;
+                        return addressBook.Search(phoneNumber: Console.ReadLine().Trim());
+                    }
+                default:
+                    {
+                        Console.WriteLine("Invalid Input");
+                        return null;
                     }
             }
         }

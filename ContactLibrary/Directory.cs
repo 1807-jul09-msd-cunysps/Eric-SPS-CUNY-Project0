@@ -35,7 +35,7 @@ namespace ContactLibrary
                 "1. ID \n" +
                 "2. First name \n" +
                 "3. Last name \n");
-            searchCriteria = Console.ReadLine();
+            searchCriteria = Console.ReadLine().Trim();
             switch (searchCriteria.ToLower())
             {
                 case "id":
@@ -49,14 +49,14 @@ namespace ContactLibrary
                 case "2":
                     {
                         Console.WriteLine("Please enter the first name of the contact(s) you wish to delete");
-                        deleteList = Search(firstName: Console.ReadLine());
+                        deleteList = Search(firstName: Console.ReadLine().Trim());
                         break;
                     }
                 case "last name":
                 case "3":
                     {
                         Console.WriteLine("Please enter the last name of the contact(s) you wish to delete");
-                        deleteList = Search(lastName: Console.ReadLine());
+                        deleteList = Search(lastName: Console.ReadLine().Trim());
                         break;
                     }
                 default:
@@ -76,7 +76,7 @@ namespace ContactLibrary
             string changes;
             Console.WriteLine(updatePerson + "\n \n" +
                 "What would you like to change? Please type in the field. ID cannot be changed.");
-            changes = Console.ReadLine();
+            changes = Console.ReadLine().Trim();
             switch (changes.ToLower())
             {
                 case "phone number":
@@ -86,38 +86,49 @@ namespace ContactLibrary
                         int countryCode = Console.Read();
                         updatePerson.phone.countrycode = (Country)countryCode;
                         Console.WriteLine("area code:");
-                        updatePerson.phone.areaCode = Console.ReadLine();
+                        updatePerson.phone.areaCode = Console.ReadLine().Trim();
                         Console.WriteLine("number:");
-                        updatePerson.phone.number = Console.ReadLine();
+                        updatePerson.phone.number = Console.ReadLine().Trim();
                         Console.WriteLine("extension:");
-                        updatePerson.phone.ext = Console.ReadLine();
+                        updatePerson.phone.ext = Console.ReadLine().Trim();
                         break;
                     }
                 case "address":
                     {
                         Console.WriteLine("Please enter the following bits of information.");
                         Console.WriteLine("house number:");
-                        updatePerson.address.houseNum = Console.ReadLine();
+                        updatePerson.address.houseNum = Console.ReadLine().Trim();
                         Console.WriteLine("street:");
-                        updatePerson.address.street = Console.ReadLine();
+                        updatePerson.address.street = Console.ReadLine().Trim();
                         Console.WriteLine("city:");
-                        updatePerson.address.city = Console.ReadLine();
+                        updatePerson.address.city = Console.ReadLine().Trim();
                         Console.WriteLine("state:");
-                        string state = Console.ReadLine();
-                        updatePerson.address.State = (State)Enum.Parse(typeof(State),state);
+                        string state = Console.ReadLine().Trim();
+                        if (!Enum.IsDefined(typeof(State), state))
+                        {
+                            Console.WriteLine("Unknown State.");
+                            return;
+                        }
+                        updatePerson.address.State = (State)Enum.Parse(typeof(State), state);
                         Console.WriteLine("country:");
-                        updatePerson.address.Country = (Country)Enum.Parse(typeof(Country), Console.ReadLine());
+                        string country = (Console.ReadLine()).ToUpper().Trim();
+                        if (!Enum.IsDefined(typeof(Country), country))
+                        {
+                            Console.WriteLine("Unknown Country.");
+                            return;
+                        }
+                        updatePerson.address.Country = (Country)Enum.Parse(typeof(Country), country);
                         Console.WriteLine("zipcode:");
-                        updatePerson.address.zipcode = Console.ReadLine();
+                        updatePerson.address.zipcode = Console.ReadLine().Trim();
                         break;
                     }
                 case "name":
                     {
                         Console.WriteLine("Please enter the following bits of information.");
                         Console.WriteLine("family name:");
-                        updatePerson.lastName = Console.ReadLine();
+                        updatePerson.lastName = Console.ReadLine().Trim();
                         Console.WriteLine("given name:");
-                        updatePerson.firstName = Console.ReadLine();
+                        updatePerson.firstName = Console.ReadLine().Trim();
                         break;
                     }
                 default:
