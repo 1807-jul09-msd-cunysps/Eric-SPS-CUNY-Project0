@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using ContactLibrary;
+using System.IO;
 using Newtonsoft.Json;
 
 namespace ContactClient
@@ -15,7 +16,7 @@ namespace ContactClient
 
         static void Main(string[] args)
         {
-            Directory addressBook = new Directory();
+            PersonDirectory addressBook = new PersonDirectory();
             string jsonData = "";
             while (true) {
                 Console.WriteLine("What do you wish to do?\n" +
@@ -58,7 +59,7 @@ namespace ContactClient
                         }
                     case "4":
                         {
-                            Directory listFound = new Directory();
+                            PersonDirectory listFound = new PersonDirectory();
                             listFound.directory = Search(addressBook);
                             if (!listFound.directory.Any())
                             {
@@ -83,7 +84,8 @@ namespace ContactClient
                     case "7":
                         {
                             jsonData = JsonConvert.SerializeObject(addressBook);
-                            Console.WriteLine(jsonData);
+
+                            Console.WriteLine("Written to file.");
                             break;
                         }
                     case "8":
@@ -179,7 +181,7 @@ namespace ContactClient
             addition.phone.ext = (Console.ReadLine()).Trim();
             return addition;
         }
-        public static void pushToDB(Directory addressBook)
+        public static void pushToDB(PersonDirectory addressBook)
         {
             SqlConnection con = null;
             string insertAddress = "INSERT INTO PersonAddress (houseNum,street,city,state,Country,zipcode) " +
@@ -255,7 +257,7 @@ namespace ContactClient
                 con.Close();
             }
         }
-        public static List<Person> Search(Directory addressBook)
+        public static List<Person> Search(PersonDirectory addressBook)
         {
             Console.WriteLine("What would you like to search by? \n" +
                 "1. ID\n" +
@@ -302,6 +304,10 @@ namespace ContactClient
                         return null;
                     }
             }
+        }
+        public void Save(string jsonData)
+        {
+            File.WriteAllText("C:\\Users\\eli54\\Desktop\\JsonData", jsonData);
         }
     }
 }

@@ -26,6 +26,7 @@ namespace ContactLibrary
             address.Pid = id;
             phone = new Phone();
             phone.Pid = id;
+            id++;
         }
         public long Pid { get; set; }
         public string firstName { get; set; }

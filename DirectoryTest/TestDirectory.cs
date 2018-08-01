@@ -11,7 +11,7 @@ namespace DirectoryTest
         public void TestMethod()
         {
             string[] testValues = { "Kenny", "Li", "1329", "76th street", "Brooklyn", "NY", "11229", "US", "1", "718", "331", "0868" };
-            Directory addressBook = new Directory();
+            PersonDirectory addressBook = new PersonDirectory();
             Person addition = new Person();
             addition.lastName = testValues[1];
             addition.firstName = testValues[0];

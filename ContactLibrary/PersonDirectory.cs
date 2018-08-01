@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace ContactLibrary
 {
     [SerializableAttribute]
-    public class Directory
+    public class PersonDirectory
     {
         public List<Person> directory;
-        public Directory()
+        public PersonDirectory()
         {
             directory = new List<Person>();
         }
