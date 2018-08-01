@@ -84,6 +84,11 @@ namespace ContactLibrary
                         Console.WriteLine("Please enter the following bits of information.");
                         Console.WriteLine("country code:");
                         int countryCode = Console.Read();
+                        if (!Enum.IsDefined(typeof(Country), countryCode))
+                        {
+                            Console.WriteLine("Unknown Country Code.");
+                            return;
+                        }
                         updatePerson.phone.countrycode = (Country)countryCode;
                         Console.WriteLine("area code:");
                         updatePerson.phone.areaCode = Console.ReadLine().Trim();
