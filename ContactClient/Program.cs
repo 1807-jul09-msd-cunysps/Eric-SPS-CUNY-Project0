@@ -307,7 +307,7 @@ namespace ContactClient
         }
         public static void Save(string jsonData)
         {
-            File.WriteAllText("C:\\Users\\eli54\\Desktop\\JsonData", jsonData);
+            File.WriteAllText("C:\\Users\\eli54\\Desktop\\JsonData\\data.json", jsonData);
         }
     }
 }

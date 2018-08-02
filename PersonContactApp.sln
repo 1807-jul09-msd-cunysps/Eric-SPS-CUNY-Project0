@@ -7,7 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactLibrary", "ContactLi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactClient", "ContactClient\ContactClient.csproj", "{C16F88C8-563E-4439-BD68-965FF7E414F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryTest", "DirectoryTest\DirectoryTest.csproj", "{914A9789-690C-412E-9EF0-2D374BE09C1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectoryTest", "DirectoryTest\DirectoryTest.csproj", "{914A9789-690C-412E-9EF0-2D374BE09C1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactDAL", "ContactDAL\ContactDAL.csproj", "{ED635FA6-E5C1-4C8F-B459-309EA9F4C29D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactAPI", "ContactAPI\ContactAPI.csproj", "{6993CEC6-FBF9-4B13-9736-F23C046E55DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{914A9789-690C-412E-9EF0-2D374BE09C1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{914A9789-690C-412E-9EF0-2D374BE09C1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{914A9789-690C-412E-9EF0-2D374BE09C1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED635FA6-E5C1-4C8F-B459-309EA9F4C29D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED635FA6-E5C1-4C8F-B459-309EA9F4C29D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED635FA6-E5C1-4C8F-B459-309EA9F4C29D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED635FA6-E5C1-4C8F-B459-309EA9F4C29D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6993CEC6-FBF9-4B13-9736-F23C046E55DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6993CEC6-FBF9-4B13-9736-F23C046E55DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6993CEC6-FBF9-4B13-9736-F23C046E55DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6993CEC6-FBF9-4B13-9736-F23C046E55DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
