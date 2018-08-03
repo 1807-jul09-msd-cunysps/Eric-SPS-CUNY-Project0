@@ -27,7 +27,7 @@ namespace ContactAPI.Controllers
         {
             if (p != null)
             {
-                // Make a call to CRUD Method to insert in to DB
+                crud.InsertPerson(p);
                 return Ok();
             }
             else
@@ -43,9 +43,9 @@ namespace ContactAPI.Controllers
         }
         // to do Delete
         [HttpDelete]
-        public void Delete()
+        public void Delete(Person p)
         {
-
+            crud.DeletePerson(p);
         }
     }
 }

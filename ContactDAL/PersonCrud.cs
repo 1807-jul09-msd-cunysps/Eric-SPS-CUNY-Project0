@@ -161,14 +161,92 @@ namespace ContactDAL
             }
         }
         //Insert
-        public void InsertPersons()
+        public void InsertPerson(Person p)
         {
+            using (con = new SqlConnection(conStr))
+            {
+                string insertAddress = "INSERT INTO PersonAddress (houseNum,street,city,state,Country,zipcode) " +
+                    "Values (@houseNum,@street,@city,@state,@Country,@zipcode)";
+                string insertPhone = "INSERT INTO PersonPhone (countryCode,areaCode,number,ext) " +
+                    "Values (@countryCode,@areaCode,@number,@ext)";
+                string insertPerson = "INSERT INTO Person (firstName,lastName,address,phone) " +
+                    "Values (@firstName,@lastName,(SELECT COUNT(*) from PersonAddress),(SELECT COUNT(*) from PersonPhone))";
 
+                try
+                {
+                    con.Open();
+
+                    SqlCommand address = new SqlCommand(insertAddress, con);
+                    SqlCommand phone = new SqlCommand(insertPhone, con);
+                    SqlCommand person = new SqlCommand(insertPerson, con);
+
+                    address.Parameters.Add("@houseNum", SqlDbType.VarChar, 255).Value = p.address.houseNum;
+                    address.Parameters.Add("@street", SqlDbType.VarChar, 255).Value = p.address.street;
+                    address.Parameters.Add("@city", SqlDbType.VarChar, 255).Value = p.address.city;
+                    address.Parameters.Add("@state", SqlDbType.VarChar, 255).Value = p.address.State;
+                    address.Parameters.Add("@Country", SqlDbType.VarChar, 255).Value = p.address.Country;
+                    address.Parameters.Add("@zipcode", SqlDbType.VarChar, 255).Value = p.address.zipcode;
+
+                    phone.Parameters.Add("@countryCode", SqlDbType.Int).Value = p.phone.countrycode;
+                    phone.Parameters.Add("@areaCode", SqlDbType.Int).Value = p.phone.areaCode;
+                    phone.Parameters.Add("@number", SqlDbType.Int).Value = p.phone.number;
+                    phone.Parameters.Add("@ext", SqlDbType.Int).Value = p.phone.ext;
+
+                    person.Parameters.Add("@firstName", SqlDbType.VarChar, 255).Value = p.firstName;
+                    person.Parameters.Add("@lastName", SqlDbType.VarChar, 255).Value = p.lastName;
+
+                    address.ExecuteNonQuery();
+                    phone.ExecuteNonQuery();
+                    person.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
         }
         //Delete
-        public void DeletePersons()
+        public void DeletePerson(Person p)
         {
+            using (con = new SqlConnection(conStr))
+            {
+                cmdStr = "Delete from Person where ID = @pid" +
+                    "Delete from PersonAddress where ID = @aid" +
+                    "Delete from PersonPhone where ID = @phid";
 
+                try
+                {
+                    con.Open();
+
+                    cmd = new SqlCommand(cmdStr, con);
+
+                    cmd.Parameters.Add("@pid", SqlDbType.Int).Value = p.Pid;
+                    cmd.Parameters.Add("@aid", SqlDbType.Int).Value = p.address.Pid;
+                    cmd.Parameters.Add("@phid", SqlDbType.Int).Value = p.phone.Pid;
+
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
         }
         //update
         public void UpdatePerson()
