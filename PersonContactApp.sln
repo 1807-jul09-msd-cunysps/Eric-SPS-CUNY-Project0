@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactDAL", "ContactDAL\Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactAPI", "ContactAPI\ContactAPI.csproj", "{6993CEC6-FBF9-4B13-9736-F23C046E55DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP", "..\..\ASP\ASP\ASP\ASP.csproj", "{2DEF17B7-9029-4B89-B666-628FC733DF2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{6993CEC6-FBF9-4B13-9736-F23C046E55DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6993CEC6-FBF9-4B13-9736-F23C046E55DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6993CEC6-FBF9-4B13-9736-F23C046E55DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DEF17B7-9029-4B89-B666-628FC733DF2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DEF17B7-9029-4B89-B666-628FC733DF2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DEF17B7-9029-4B89-B666-628FC733DF2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DEF17B7-9029-4B89-B666-628FC733DF2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

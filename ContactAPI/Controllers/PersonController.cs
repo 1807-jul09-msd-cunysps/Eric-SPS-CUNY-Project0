@@ -37,15 +37,31 @@ namespace ContactAPI.Controllers
         }
         // to do  Put
         [HttpPut]
-        public void Put()
+        public IHttpActionResult Put(Person p)
         {
-
+            if (p != null)
+            {
+                crud.UpdatePerson(p);
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
         // to do Delete
         [HttpDelete]
-        public void Delete(Person p)
+        public IHttpActionResult Delete(Person p)
         {
-            crud.DeletePerson(p);
+            if (p != null)
+            {
+                crud.DeletePerson(p);
+                return Ok();    
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
     }
 }

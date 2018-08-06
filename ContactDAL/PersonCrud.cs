@@ -249,9 +249,48 @@ namespace ContactDAL
             }
         }
         //update
-        public void UpdatePerson()
+        public void UpdatePerson(Person p)
         {
+            using (con = new SqlConnection(conStr))
+            {
+                cmdStr = "UPDATE Person set firstName = @firstN, lastName = @lastN where ID = @pid;" +
+                    "UPDATE PersonAddress set houseNum = @houseNum, street = @street, city = @city, state = @state, Country = @country, zipcode = @zip " +
+                    "where ID = (SELECT address from Person where ID = @pid);" +
+                    "UPDATE PersonPhone set countryCode = @cc, areaCode = @ac, number = @num, ext = @ext " +
+                    "where ID = (SELECT phone from Person where ID = @pid";
 
+                try
+                {
+                    cmd = new SqlCommand(cmdStr, con);
+
+                    cmd.Parameters.Add("@pid", SqlDbType.Int).Value = p.Pid;
+                    cmd.Parameters.Add("@firstN", SqlDbType.VarChar).Value = p.firstName;
+                    cmd.Parameters.Add("@lastN", SqlDbType.VarChar).Value = p.lastName;
+                    cmd.Parameters.Add("@houseNum", SqlDbType.VarChar).Value = p.address.houseNum;
+                    cmd.Parameters.Add("@street", SqlDbType.VarChar).Value = p.address.street;
+                    cmd.Parameters.Add("@city", SqlDbType.VarChar).Value = p.address.city;
+                    cmd.Parameters.Add("@state", SqlDbType.VarChar).Value = p.address.State;
+                    cmd.Parameters.Add("@country", SqlDbType.VarChar).Value = p.address.Country;
+                    cmd.Parameters.Add("@zip", SqlDbType.VarChar).Value = p.address.zipcode;
+                    cmd.Parameters.Add("@cc", SqlDbType.Int).Value = p.phone.countrycode;
+                    cmd.Parameters.Add("@ac", SqlDbType.Int).Value = p.phone.areaCode;
+                    cmd.Parameters.Add("@num", SqlDbType.Int).Value = p.phone.number;
+                    cmd.Parameters.Add("@ext", SqlDbType.Int).Value = p.phone.ext;
+
+                }
+                catch (SqlException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
         }
     }
 }
