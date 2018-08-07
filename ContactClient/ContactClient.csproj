@@ -54,6 +54,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ContactDAL\ContactDAL.csproj">
+      <Project>{ed635fa6-e5c1-4c8f-b459-309ea9f4c29d}</Project>
+      <Name>ContactDAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ContactLibrary\ContactLibrary.csproj">
       <Project>{f3765deb-4fb4-4ada-bf99-8ac04db8c404}</Project>
       <Name>ContactLibrary</Name>

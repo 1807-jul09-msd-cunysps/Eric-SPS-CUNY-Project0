@@ -17,16 +17,11 @@ namespace ContactLibrary
     [SerializableAttribute]
     public class Person
     {
-        static int id = 1;
         public Person()
         {
             /// Initialise the dependant objects
-            Pid = id;
             address = new Address();
-            address.Pid = id;
             phone = new Phone();
-            phone.Pid = id;
-            id++;
         }
         public long Pid { get; set; }
         public string firstName { get; set; }

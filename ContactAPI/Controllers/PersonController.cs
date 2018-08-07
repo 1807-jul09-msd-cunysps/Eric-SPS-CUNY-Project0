@@ -7,6 +7,7 @@ using System.Web.Http;
 using ContactDAL;
 using ContactLibrary;
 using System.Web.Http.Cors;
+using Newtonsoft.Json;
 
 namespace ContactAPI.Controllers
 {
@@ -16,10 +17,17 @@ namespace ContactAPI.Controllers
         PersonCrud crud = new PersonCrud();
         //READ
         [HttpGet]
-        public IEnumerable<Person> Get()
+        public IHttpActionResult Get()
         {
             var person = crud.GetPersons();
-            return person;
+            if (person != null)
+            {
+                return Ok(person);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
         //ADD Person
         [HttpPost]

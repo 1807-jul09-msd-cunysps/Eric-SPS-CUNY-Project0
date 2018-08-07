@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using ContactLibrary;
 using System.IO;
 using Newtonsoft.Json;
+using ContactDAL;
 
 namespace ContactClient
 {
@@ -16,88 +17,10 @@ namespace ContactClient
 
         static void Main(string[] args)
         {
-            ContactLibrary.Directory addressBook = new ContactLibrary.Directory();
-            string jsonData = "";
-            while (true) {
-                Console.WriteLine("What do you wish to do?\n" +
-                    "1. Add a person\n" +
-                    "2. Delete a person(s)\n" +
-                    "3. Update a person\n" +
-                    "4. Search for people\n" +
-                    "5. Push directory onto SQL database\n" +
-                    "6. Read contacts from SQL database\n" +
-                    "7. Create Json Object\n" +
-                    "8. Exit");
-                switch (Console.ReadLine())
-                {
-                    case "1":
-                        {
-                            Person addition = createPerson();
-                            if (addition == null)
-                            {
-                                Console.WriteLine("Person Entry failed.");
-                                break;
-                            }
-                            else
-                            {
-                                addressBook.Add(addition);
-                                break;
-                            }
-                        }
-                    case "2":
-                        {
-                            addressBook.Delete();
-                            break;
-                        }
-                    case "3":
-                        {
-                            Console.WriteLine("What is the ID of the contact you wish to update? " +
-                                "If you do not know, use the search function to find it.");
-                            long pid = Console.Read();
-                            addressBook.Update(pid);
-                            break;
-                        }
-                    case "4":
-                        {
-                            ContactLibrary.Directory listFound = new ContactLibrary.Directory();
-                            listFound.directory = Search(addressBook);
-                            if (!listFound.directory.Any())
-                            {
-                                Console.WriteLine("No Contacts found.");
-                            }
-                            else
-                            {
-                                Console.WriteLine(listFound);
-                            }
-                            break;
-                        }
-                    case "5":
-                        {
-                            pushToDB(addressBook);
-                            break;
-                        }
-                    case "6":
-                        {
-                            pullFromDB();
-                            break;
-                        }
-                    case "7":
-                        {
-                            jsonData = JsonConvert.SerializeObject(addressBook);
-                            Save(jsonData);
-                            Console.WriteLine("Written to file.");
-                            break;
-                        }
-                    case "8":
-                        {
-                            return;
-                        }
-                    default:
-                        {
-                            Console.WriteLine("Invalid Input.");
-                            break;
-                        }
-                }
+            PersonCrud personCrud = new PersonCrud();
+            foreach (Person element in personCrud.GetPersons())
+            {
+                Console.WriteLine(element);
             }
         }
         public static void QueryInsertion(Person somePerson, SqlCommand address, SqlCommand phone, SqlCommand person)
